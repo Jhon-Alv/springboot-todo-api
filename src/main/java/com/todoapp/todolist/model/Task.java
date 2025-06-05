@@ -14,7 +14,7 @@ public class Task {
 
     private String description;
 
-    private String state;
+    private State state;
 
     private LocalDateTime created_date;
 
@@ -26,7 +26,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(Long id, String description, String title, String estado) {
+    public Task(Long id, String description, String title, State estado) {
         this.id = id;
         this.description = description;
         this.title = title;
@@ -57,11 +57,11 @@ public class Task {
         this.description = description;
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 

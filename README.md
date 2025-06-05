@@ -24,9 +24,9 @@ El objetivo principal de este proyecto es demostrar los fundamentos de la creaci
 * **Actualizar Tareas:** Modificar el título, la descripción o el estado de una tarea existente.
 * **Eliminar Tareas:** Borrar una tarea de la base de datos.
 * **Gestión de Estados:** Cada tarea puede tener uno de los siguientes estados:
-    * `PENDIENTE`
-    * `EN_PROGRESO`
-    * `COMPLETADO`
+    * `pendiente`
+    * `progreso`
+    * `completado`
 
 ---
 
@@ -77,13 +77,13 @@ La aplicación utiliza una única entidad llamada `Tarea` para representar las t
 
 ### Entidad `Tarea`
 
-| Campo             | Tipo de Dato | Descripción                                      |
-| ----------------- | ------------ | ------------------------------------------------ |
-| `id`              | `Long`       | Identificador único de la tarea (autoincremental). |
-| `titulo`          | `String`     | Título o nombre corto de la tarea.               |
-| `descripcion`     | `String`     | Descripción detallada de lo que hay que hacer.   |
-| `estado`          | `String`     | Estado actual de la tarea.                       |
-| `fechaCreacion`   | `LocalDateTime`| Fecha y hora en que se creó la tarea.            |
+| Campo             | Tipo de Dato    | Descripción                                      |
+| ----------------- |-----------------| ------------------------------------------------ |
+| `id`              | `Long`          | Identificador único de la tarea (autoincremental). |
+| `titulo`          | `String`        | Título o nombre corto de la tarea.               |
+| `descripcion`     | `String`        | Descripción detallada de lo que hay que hacer.   |
+| `estado`          | `State`         | Estado actual de la tarea.                       |
+| `fechaCreacion`   | `LocalDateTime` | Fecha y hora en que se creó la tarea.            |
 
 ---
 
@@ -107,6 +107,6 @@ Para crear o actualizar una tarea, el cuerpo de la solicitud debe ser un JSON co
 {
   "titulo": "Implementar funcionalidad de login",
   "descripcion": "Añadir autenticación de usuarios con Spring Security.",
-  "estado": "EN_PROGRESO"
+  "estado": "progreso"
 }
 ```
