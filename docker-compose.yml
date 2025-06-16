@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mysql-container:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: todolistdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin-container:
+    depends_on:
+      - mysql-container
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      - PMA_HOST=mysql-container
+
+
+
+
+volumes:
+  db_data:

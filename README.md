@@ -4,13 +4,13 @@ Claro, aquí tienes un README.md completo y bien estructurado para tu proyecto d
 
 # Proyecto TODO List con Spring Boot
 
-Este es un proyecto básico de una aplicación de lista de tareas (TODO list) desarrollada con **Spring Boot**. La aplicación permite realizar operaciones **CRUD** (Crear, Leer, Actualizar, Eliminar) sobre tareas y gestionarlas a través de una API RESTful. Para simplificar el despliegue y las pruebas, utiliza una base de datos en memoria **H2**.
+Este es un proyecto básico de una aplicación de lista de tareas (**TODO list**) desarrollada con **Spring Boot**. La app permite realizar operaciones **CRUD** sobre tareas y gestionarlas a través de una API RESTful. Ahora utiliza **MySQL** como base de datos persistente, desplegada con **Docker**, y **PhpMyAdmin** como interfaz visual.
 
 ---
 
 ## 🎯 Objetivo
 
-El objetivo principal de este proyecto es demostrar los fundamentos de la creación de una aplicación web RESTful utilizando el ecosistema de Spring. Es ideal para desarrolladores que están comenzando con Spring Boot y desean entender cómo integrar una base de datos, crear entidades y exponer endpoints.
+Demostrar los fundamentos de una aplicación RESTful usando Spring Boot con persistencia en MySQL. Este proyecto es ideal para desarrolladores que comienzan con Spring y desean conocer la integración con bases de datos externas.
 
 **Nivel:** Básico
 **Tiempo estimado de desarrollo:** 2-3 días
@@ -36,7 +36,10 @@ El objetivo principal de este proyecto es demostrar los fundamentos de la creaci
 * **Spring Boot**: Framework para crear aplicaciones autocontenidas y listas para producción.
 * **Spring Web**: Proporciona funcionalidades para construir aplicaciones web, incluyendo APIs RESTful.
 * **Spring Data JPA**: Facilita la implementación de la capa de acceso a datos y la comunicación con la base de datos.
-* **H2 Database**: Base de datos en memoria, ideal para desarrollo y pruebas rápidas sin necesidad de configuración externa.
+* **MySQL (Docker)**: Sistema de gestión de bases de datos relacional ampliamente utilizado. En este proyecto se ejecuta dentro de un contenedor Docker para facilitar su despliegue sin instalación manual.
+* **PhpMyAdmin (Docker)**: Herramienta web que permite administrar visualmente bases de datos MySQL. Se incluye como contenedor para consultar, editar y gestionar datos sin necesidad de línea de comandos.
+* **Docker & Docker Compose**: Docker permite ejecutar servicios en contenedores livianos y reproducibles. Docker Compose facilita la definición y ejecución de múltiples contenedores mediante un único archivo `docker-compose.yml`.
+
 * **Maven**: Herramienta para la gestión de dependencias y construcción del proyecto.
 
 ---
@@ -51,23 +54,39 @@ Para poner en marcha este proyecto en tu entorno local, sigue estos sencillos pa
     cd tu-repositorio
     ```
 
-2.  **Ejecutar la Aplicación**
+2. **Levanta la base de datos con Docker**
+
+Asegúrate de tener Docker y Docker Compose instalados, y ejecuta:
+
+    docker-compose up -d
+
+Esto iniciará MySQL y PhpMyAdmin. Puedes acceder a PhpMyAdmin desde:
+
+    http://localhost:8080
+
+* **Servidor**: mysql-container
+
+* **Usuario**: root
+
+* **Contraseña**: admin
+
+
+3.  **Ejecutar la Aplicación**
     Puedes ejecutar la aplicación utilizando el wrapper de Maven incluido en el proyecto.
     ```bash
     ./mvnw spring-boot:run
     ```
     La aplicación se iniciará en el puerto `8080` por defecto.
 
-3.  **Acceder a la Consola H2**
-    Una vez que la aplicación esté en funcionamiento, puedes acceder a la consola de la base de datos H2 para ver las tablas y ejecutar consultas SQL.
+3.  **Acceder a PhpMyAdmin**
+    Una vez que la aplicación esté en funcionamiento, puedes acceder al gestor de la base de datos MySQL para ver las tablas y ejecutar consultas SQL.
 
-    * Abre tu navegador y ve a: `http://localhost:8080/h2-console`
+    * Abre tu navegador y ve a: `http://localhost/index.php`
     * Asegúrate de que la configuración sea la siguiente:
-        * **Driver Class:** `org.h2.Driver`
-        * **JDBC URL:** `jdbc:h2:mem:tododb`
-        * **User Name:** `sa`
-        * **Password:** (dejar en blanco)
-    * Haz clic en **Connect**.
+        * **JDBC URL:** `jdbc:mysql://localhost:3306/todolistdb`
+        * **User Name:** `root`
+        * **Password:** `admin`
+    * Haz clic en **Iniciar sesión**.
 
 ---
 
